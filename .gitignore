@@ -43,6 +43,7 @@
 /old_fig_directivities_and_R.py
 /phase_shift_calculations.py
 /plotly_cheops.py
-Figure folders/
+/Figure*folders
 /SV*DAS*paper*1*figures
+/data
 /.gitignore
