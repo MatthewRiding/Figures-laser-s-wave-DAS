@@ -1,0 +1,2 @@
+Nessie wfm 29.  Nominal energy per pulse: 50uJ
+Power meter reading: 46uJ
