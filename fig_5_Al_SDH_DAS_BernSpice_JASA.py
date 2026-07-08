@@ -15,8 +15,7 @@ from functions.modsdhcorrect import (
     sdh_correct_XX_using_z_apex_vector,
     sdh_correct_HS_bernspice)
 from functions.modsumgather import sum_gather_pos_and_neg_angles
-from functions.modmyplotfuncs import (plot_wiggles_DAS,
-                                      plot_wiggles_DAS_central_20_percent)
+from functions.modmyplotfuncs import (plot_wiggles_DAS_central_20_percent)
 from corevariables.modjasa import (fontsize_labels_pt,
                                    width_fig_two_column_jasa_in)
 from functions.modmyplotfuncs import set_mpl_fonts_Times_New_Roman
@@ -77,16 +76,18 @@ t_0_half_width_us = 0.6
 n_t_0s = 300
 
 # L-L wavefront:
-corr_LL_exp_nm = sdh_correct_XX_using_z_apex_vector(mss_b_scan_nm,
-                                                    z_apex_vector_mm,
-                                                    params_al_sdh.time_vector_us,
-                                                    material_al_sdh.c_L_mpers)
+(corr_LL_exp_nm
+ ) = sdh_correct_XX_using_z_apex_vector(mss_b_scan_nm,
+                                        z_apex_vector_mm,
+                                        params_al_sdh.time_vector_us,
+                                        material_al_sdh.c_L_mpers)
 
 # S-S wavefront:
-corr_SS_exp_nm = sdh_correct_XX_using_z_apex_vector(mss_b_scan_nm,
-                                                    z_apex_vector_mm,
-                                                    params_al_sdh.time_vector_us,
-                                                    material_al_sdh.c_T_mpers)
+(corr_SS_exp_nm
+ ) = sdh_correct_XX_using_z_apex_vector(mss_b_scan_nm,
+                                        z_apex_vector_mm,
+                                        params_al_sdh.time_vector_us,
+                                        material_al_sdh.c_T_mpers)
 
 # H-S wavefront:
 # Use same y-axis range as S-S so that they match horizontally and
@@ -238,7 +239,8 @@ sum_LL_all_theo_norm = (sum_LL_all_theo * scale_factor_theo)
 # S-S:
 sum_SS_0_crit_theo_norm = sum_SS_0_crit_theo * scale_factor_theo
 sum_SS_50_60_theo_norm = sum_SS_50_60_theo * scale_factor_theo
-sum_SS_0_crit_plus_50_60_theo_norm = sum_SS_0_crit_plus_50_60_theo * scale_factor_theo
+sum_SS_0_crit_plus_50_60_theo_norm = (sum_SS_0_crit_plus_50_60_theo *
+                                      scale_factor_theo)
 sum_SS_0_60_theo_norm = sum_SS_0_60_theo * scale_factor_theo
 
 # Head-S:
@@ -352,8 +354,8 @@ def corr_plot_ax_format(ax):
 
 
 def theta_lines(ax, angle_deg, label=None):
-    # Plot dashed axvlines at the two x values corresponding to +/- the given angle
-    # (either side of the SDH):
+    # Plot dashed axvlines at the two x values corresponding to +/- the given
+    # angle (either side of the SDH):
     x_diff_theta_mm = np.tan(np.deg2rad(angle_deg)) * params_al_sdh.z_sdh_mm
     x_theta_pos_mm = params_al_sdh.x_sdh_mm + x_diff_theta_mm
     x_theta_neg_mm = params_al_sdh.x_sdh_mm - x_diff_theta_mm
