@@ -4,7 +4,7 @@ import colorcet as cc
 import numpy as np
 from scipy.signal import hilbert
 
-from NMO_polarity_aluminium import get_params_aluminium_NMO_scan
+from corevariables.modhfsexperiment import params_al_nmo
 from functions.modnmocorrection import nmo_correct_b_vector
 from functions.modhwcorrect import cdp_head_wave_correct
 from functions.modthetacrittrig import calculate_theta_crit_deg
@@ -29,7 +29,6 @@ from functions.modcalculationsfortable import get_table_row_hfs
 # %autoreload 2
 
 # Load the experimental data:
-params_al_nmo = get_params_aluminium_NMO_scan()
 b_scan_ds_raw_v = params_al_nmo.b_scan_array_2d_detrend
 
 # Generate axis vectors:
