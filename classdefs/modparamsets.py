@@ -95,6 +95,44 @@ class sdh_fmc_param_set(fmc_param_set):
         return mss_filtered_mws
 
 
+class sdh_mss_param_set(scan_param_set):
+    def __init__(self, displacements_array_2d_pm, pitch_mm, t_min_us, t_max_us,
+                 rise_time_us, x_sdh_mm, z_sdh_mm, radius_sdh_mm):
+
+        n_samples = np.shape(displacements_array_2d_pm)[0]
+
+        super().__init__(pitch_mm, t_min_us, t_max_us, n_samples, rise_time_us)
+
+        self.displacements_array_2d_pm = displacements_array_2d_pm
+        self.x_sdh_mm = x_sdh_mm
+        self.z_sdh_mm = z_sdh_mm
+        self.radius_sdh_mm = radius_sdh_mm
+
+        # Create element x vector:
+        self.n_tx = np.shape(self.displacements_array_2d_pm)[1]
+        self.aperture_mm = self.pitch_mm * (self.n_tx - 1)
+        self.x_elements_mm = np.linspace(0, self.aperture_mm,
+                                         self.n_tx)
+
+        # Get lateral offsets of gen points from SDH centre:
+        self.x_offsets_from_sdh_mm = self.x_elements_mm - self.x_sdh_mm
+
+        # Calculate vector of ray emission angles
+        # (relative to top surface normal):
+        (self.angles_gen_sdh_deg
+         ) = np.rad2deg(np.arctan2(self.x_offsets_from_sdh_mm,
+                                   self.z_sdh_mm)
+                        )
+
+        # Calculate vector of direct ray path lengths
+        # from each element, to SDH surface, and back:
+        (self.direct_reflected_path_lengths_mm
+         ) = 2 * (np.sqrt(self.x_offsets_from_sdh_mm**2 +
+                          self.z_sdh_mm**2
+                          ) -
+                  self.radius_sdh_mm)
+
+
 class nmo_scan_param_set(scan_param_set):
     def __init__(self, b_scan_array_2d, pitch_mm, t_min_us, t_max_us,
                  rise_time_us, thickness_b_mm):

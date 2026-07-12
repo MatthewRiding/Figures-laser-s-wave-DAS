@@ -9,7 +9,6 @@ from corevariables.modsdhexperiment import (
     params_al_sdh,
     material_al_sdh
 )
-from corevariables.modjasa import lw_boundaries
 from functions.modsdhcorrect import (
     sdh_correct_HS_z_apex_based,
     sdh_correct_XX_using_z_apex_vector,
@@ -17,9 +16,9 @@ from functions.modsdhcorrect import (
 from functions.modsumgather import sum_gather_pos_and_neg_angles
 from functions.modmyplotfuncs import (plot_wiggles_DAS_central_20_percent)
 from corevariables.modjasa import (fontsize_labels_pt,
-                                   width_fig_two_column_jasa_in)
+                                   width_fig_two_column_jasa_in,
+                                   lw_boundaries)
 from functions.modmyplotfuncs import set_mpl_fonts_Times_New_Roman
-from functions.modconvertvtonm import convert_quartet_v_to_nm
 from functions.modraydiagrammss import plot_ray_diagram_sdh_mss
 from bernspice_sdh import get_bernspice_a_scans_sdh
 from functions.modcalculationsfortable import get_table_row_sdh
@@ -34,8 +33,8 @@ from functions.modcalculationsfortable import get_table_row_sdh
 # Experiment data imported from corevariables.modsdhexperiment.
 # Most data contained within the object called 'params_al_sdh'.
 
-mss_b_scan_nm = convert_quartet_v_to_nm(
-    params_al_sdh.get_mss_filtered(Wn_Hz=2*10**6))
+# Create a variable for the displacement data, converting from pm to nm:
+mss_b_scan_nm = params_al_sdh.displacements_array_2d_pm / 1000
 
 # Axis parameters:
 # I'm going to plot the MSS B-scan:
@@ -698,14 +697,5 @@ plot_waveset_subfigure(fig_hs,
                         r'$\,$m/s'),
                        'Hybrid-S modelled'
                        )
-
-# %% Save figure to file:
-
-# Saving:
-# fig_top.savefig(r'Figure folders\Fig Al SDH DAS\SDH_DAS_BernSpice_JASA.pdf',
-#                 format='pdf', dpi=600)
-
-# fig_top.savefig(r'Figure folders\Fig Al SDH DAS\SDH_DAS_BernSpice_JASA.png',
-#                 format='png', dpi=200)
 
 # %%
