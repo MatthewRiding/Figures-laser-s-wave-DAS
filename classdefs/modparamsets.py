@@ -134,12 +134,13 @@ class sdh_mss_param_set(scan_param_set):
 
 
 class nmo_scan_param_set(scan_param_set):
-    def __init__(self, b_scan_array_2d, pitch_mm, t_min_us, t_max_us,
+    def __init__(self, b_scan_array_2d_pm, pitch_mm, t_min_us, t_max_us,
                  rise_time_us, thickness_b_mm):
         self.thickness_b_mm = thickness_b_mm
-        self.b_scan_array_2d = b_scan_array_2d
-        self.b_scan_array_2d_detrend = detrend(b_scan_array_2d, 0, 'constant')
-        (self.n_samples, self.n_elements) = np.shape(self.b_scan_array_2d)
+        self.b_scan_array_2d_pm = b_scan_array_2d_pm
+        self.b_scan_array_2d_detrend_pm = detrend(b_scan_array_2d_pm, 0,
+                                                  'constant')
+        (self.n_samples, self.n_elements) = np.shape(self.b_scan_array_2d_pm)
 
         super().__init__(pitch_mm, t_min_us, t_max_us, self.n_samples,
                          rise_time_us)

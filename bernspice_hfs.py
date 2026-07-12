@@ -16,14 +16,12 @@ from functions.modreflectioncoefficients import (
     calculate_r_sv_sv_auld,
     calculate_r_l_l_auld
 )
-from NMO_polarity_aluminium import get_params_aluminium_NMO_scan
+from corevariables.modhfsexperiment import params_al_nmo
 from functions.modfilterfmc3dbutter import filter_quartet
 
 
 material_al_hfs = material_param_set(c_L_mpers=6371,
                                      c_T_mpers=3077)
-
-params_al_nmo_scan = get_params_aluminium_NMO_scan()
 
 
 def get_u_z_a_scan_at_angle_hfs(
@@ -158,13 +156,13 @@ def get_bernspice_a_scans_hfs(
     """
     # Compute the associated vector of NMO path lengths
     # based on the theta vector:
-    theta_vector_deg = params_al_nmo_scan.theta_vector_deg
-    path_lengths_vector_m = params_al_nmo_scan.path_lengths_vector_mm * 10**-3
+    theta_vector_deg = params_al_nmo.theta_vector_deg
+    path_lengths_vector_m = params_al_nmo.path_lengths_vector_mm * 10**-3
 
     # Now loop over (theta, path_length) pairs:
     # Time has been vectorised.
     # Pre-allocate output 'b-scan' array:
-    n_elements = params_al_nmo_scan.n_elements
+    n_elements = params_al_nmo.n_elements
     n_times = len(time_vector_global_s)
     u_z_ascans_hfs_bernspice_m = np.zeros((n_elements, n_times))
 
@@ -197,8 +195,8 @@ if __name__ == '__main__':
     # Plot displacements as a colour map (b-scan):
 
     # Image extent:
-    extent = [np.min(params_al_nmo_scan.x_vector_mm),
-              np.max(params_al_nmo_scan.x_vector_mm),
+    extent = [np.min(params_al_nmo.x_vector_mm),
+              np.max(params_al_nmo.x_vector_mm),
               np.max(time_vector_global_s) / 10**-6,
               np.min(time_vector_global_s) / 10**-6]
 

@@ -2,14 +2,13 @@ import colorcet as cc
 import numpy as np
 from scipy.signal import hilbert
 
-from NMO_polarity_aluminium import get_params_aluminium_NMO_scan
+from corevariables.modhfsexperiment import params_al_nmo
 from functions.modnmocorrection import nmo_correct
 from functions.modhwcorrect import cdp_head_wave_correct
 from functions.modthetacrittrig import calculate_theta_crit_deg
 from functions.modsumgather import sum_gather
 from functions.modmyplotfuncs import plot_wiggles_DAS
 from corevariables.modieeeplotting import (fontsize_labels_pt)
-from functions.modconvertvtonm import convert_quartet_v_to_nm
 from functions.modbt0 import (calculate_b_mm_from_t_0_us)
 from functions.modphasecompensation import (compute_C_G_SV_from_deg,
                                             compute_C_R_SV_SV_from_deg,
@@ -29,8 +28,7 @@ def phase_comp_plots_hfs(
 ):
 
     # Load the data:
-    params_al_nmo = get_params_aluminium_NMO_scan()
-    b_scan_ds_raw_v = params_al_nmo.b_scan_array_2d_detrend
+    b_scan_ds_nm = params_al_nmo.b_scan_array_2d_detrend_pm / 1000
 
     c_L_mpers = 6371  # Nemo
     c_T_mpers = 3077  # Nemo
@@ -51,8 +49,6 @@ def phase_comp_plots_hfs(
     #                                   butter_order,
     #                                   band_type,
     #                                   Wn_MHz)
-    b_scan_ds_v = b_scan_ds_raw_v
-    b_scan_ds_nm = convert_quartet_v_to_nm(b_scan_ds_v)
 
     # Calculate specular ray angles:
     b_mm = 2.00
@@ -216,8 +212,7 @@ def phase_comp_plots_hfs_with_hybrid(
 ):
 
     # Load the data:
-    params_al_nmo = get_params_aluminium_NMO_scan()
-    b_scan_ds_raw_v = params_al_nmo.b_scan_array_2d_detrend
+    b_scan_ds_nm = params_al_nmo.b_scan_array_2d_detrend_pm / 1000
 
     c_L_mpers = 6371  # Nemo
     c_T_mpers = 3077  # Nemo
@@ -238,8 +233,6 @@ def phase_comp_plots_hfs_with_hybrid(
     #                                   butter_order,
     #                                   band_type,
     #                                   Wn_MHz)
-    b_scan_ds_v = b_scan_ds_raw_v
-    b_scan_ds_nm = convert_quartet_v_to_nm(b_scan_ds_v)
 
     # Calculate specular ray angles:
     b_mm = 2.00

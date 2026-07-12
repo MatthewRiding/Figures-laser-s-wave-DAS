@@ -9,15 +9,10 @@ from functions.modnmocorrection import nmo_correct_b_vector
 from functions.modhwcorrect import cdp_head_wave_correct
 from functions.modthetacrittrig import calculate_theta_crit_deg
 from functions.modsumgather import sum_gather
-from functions.modmyplotfuncs import (plot_wiggles_DAS,
-                                      plot_wiggles_DAS_central_20_percent)
-from corevariables.modjasa import (dict_arrowprops_arrow,
-                                   dict_arrowprops_line,
-                                   fontsize_labels_pt,
-                                   line_width_plots,
+from functions.modmyplotfuncs import (plot_wiggles_DAS_central_20_percent)
+from corevariables.modjasa import (fontsize_labels_pt,
                                    width_fig_two_column_jasa_in)
 from functions.modmyplotfuncs import set_mpl_fonts_Times_New_Roman
-from functions.modconvertvtonm import convert_quartet_v_to_nm
 from functions.modraydiagramnmo import plot_ray_diagram_nmo
 from bernspice_hfs import get_bernspice_a_scans_hfs
 from functions.modcalculationsfortable import get_table_row_hfs
@@ -29,7 +24,9 @@ from functions.modcalculationsfortable import get_table_row_hfs
 # %autoreload 2
 
 # Load the experimental data:
-b_scan_ds_raw_v = params_al_nmo.b_scan_array_2d_detrend
+
+# Convert the displacement data from pm to nm:
+b_scan_ds_nm = params_al_nmo.b_scan_array_2d_detrend_pm / 1000
 
 # Generate axis vectors:
 x_max_mm = params_al_nmo.x_max_mm
@@ -49,8 +46,6 @@ time_vector_us = params_al_nmo.time_vector_us
 #                                   butter_order,
 #                                   band_type,
 #                                   Wn_MHz)
-b_scan_ds_v = b_scan_ds_raw_v
-b_scan_ds_nm = convert_quartet_v_to_nm(b_scan_ds_v)
 
 # Calculate specular ray angles:
 b_mm = 2.00
