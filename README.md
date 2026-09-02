@@ -13,3 +13,7 @@ The scripts that use the Bernstein & Spicer model to generate the simulated A-sc
 ## Beam profiling:
 
 The digital camera images used for beam profiling of the generation laser beam are stored in the [`beam_profile_data`](https://github.com/MatthewRiding/Figures-laser-s-wave-DAS/tree/main/beam_profile_data) directory, alongside the MATLAB scripts used to fit Gaussian profiles to the camera data.  The results of beam profiling are summarised in [`beam profiling figure.jpg`](https://github.com/MatthewRiding/Figures-laser-s-wave-DAS/blob/main/beam_profile_data/Beam%20profiling%20figure.jpg).
+
+## Python requirements:
+Python version originally used: Python 3.13.2
+Packages:  See [`requirements.txt`](requirements.txt)
