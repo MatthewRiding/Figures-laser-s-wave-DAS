@@ -1,3 +1,6 @@
+## Link to associated paper:
+[Matthew W. Riding, Theodosia Stratoudaki; On the delay-and-sum processing of shear wave signals from a scanning thermo-elastic laser ultrasound system. J. Acoust. Soc. Am. 1 August 2026; 160 (2): 1844–1858.](https://doi.org/10.1121/10.0044378) [https://doi.org/10.1121/10.0044378](https://doi.org/10.1121/10.0044378)
+
 ## Scripts used to create figures:
 
 In the top-level directory, each file with name matching `fig_X_*.py` is the script used to render figure X from the paper.
