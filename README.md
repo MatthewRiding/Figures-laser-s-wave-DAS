@@ -21,3 +21,6 @@ The digital camera images used for beam profiling of the generation laser beam a
 Python version originally used: Python 3.13.2
 
 Packages:  See [`requirements.txt`](requirements.txt)
+
+## High resolution figure files:
+High resolution/vector files of each of the figures are available in [this DropBox folder](https://www.dropbox.com/scl/fo/pc6u9xyqopduby8l3rpxd/AFv2KYQT7bwhQUZaaRAeo8U?rlkey=d5rk5mukpq2rconfqikto7ief&st=e77e7c4o&dl=0).
